@@ -3,6 +3,7 @@
     "name": "my-app-react-native",
     "slug": "my-app-react-native",
     "version": "1.0.0",
+    "privacy": "unlisted",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
