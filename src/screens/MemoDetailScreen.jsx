@@ -8,16 +8,16 @@ export default function MemoDetailScreen() {
         <View style={styles.container}>
             <AppBar />
             <View style={styles.MemoHeader}>
-                <Text style = {styles.MemoTitle}>買い物リスト</Text>
-                <Text style = {styles.MemoDate}>2020/12/24 10:00</Text>
+                <Text style={styles.MemoTitle}>買い物リスト</Text>
+                <Text style={styles.MemoDate}>2020/12/24 10:00</Text>
             </View>
-            <ScrollView style = {styles.MemoBody}>
-                <Text style = {styles.MemoText}>
+            <ScrollView style={styles.MemoBody}>
+                <Text style={styles.MemoText}>
                     買い物リスト
                     ポテチポテチポテチポテチポテチポテチポテチポテチポテチポテチポテチポテチ
                 </Text>
             </ScrollView>
-            <CircleButton style={{ top: 160, bottom: 'auto' }} name = 'edit' />  
+            <CircleButton style={{ top: 160, bottom: 'auto' }} name="edit" />
         </View>
     );
 }
@@ -38,20 +38,19 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 20,
         lineHeight: 32,
-        fontWeight:'bold', 
+        fontWeight: 'bold',
     },
-    MemoDate:{
+    MemoDate: {
         color: '#ffffff',
         fontSize: 12,
         lineHeight: 16,
     },
-    MemoBody:{
+    MemoBody: {
         paddingVertical: 32,
         paddingHorizontal: 27,
     },
-    MemoText:{
+    MemoText: {
         fontSize: 16,
-        lineHeight: 24
-    }
-
+        lineHeight: 24,
+    },
 });
