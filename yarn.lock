@@ -1283,9 +1283,8 @@
   dependencies:
     "cross-spawn" "^6.0.5"
 
-"@expo/vector-icons@^12.0.4":
-  "integrity" "sha512-zWvHBmkpbi1KrPma6Y+r/bsGI6MjbM1MBSe6W9A4uYMLhNI5NR4JtTnqxhf7g1XdpaDtBdv5aOWKEx4d5rxnhg=="
-  "resolved" "https://registry.npmjs.org/@expo/vector-icons/-/vector-icons-12.0.5.tgz"
+"@expo/vector-icons@^12.0.4", "@expo/vector-icons@github:expo/vector-icons":
+  "resolved" "git+ssh://git@github.com/expo/vector-icons.git#c3e068185fac0b45629188e53cdf81c34f4e7849"
   "version" "12.0.5"
   dependencies:
     "lodash.frompairs" "^4.0.1"
