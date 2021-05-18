@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,TouchableOpacity} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 export default function MemoList() {
@@ -12,9 +12,9 @@ export default function MemoList() {
                         2020/12/24 10:00
                     </Text>
                 </View>
-                <View>
+                <TouchableOpacity>
                     <Feather name='x-circle' size ={18} color= '#B0B0B0'/>
-                </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.memolistitem}>
                 <View>
@@ -23,9 +23,9 @@ export default function MemoList() {
                         2020/12/24 10:00
                     </Text>
                 </View>
-                <View>
+                <TouchableOpacity>
                     <Feather name='x-circle' size ={18} color= '#B0B0B0'/>
-                </View>
+                </TouchableOpacity>
             </View>
             <View style={styles.memolistitem}>
                 <View>
@@ -34,9 +34,9 @@ export default function MemoList() {
                         2020/12/24 10:00
                     </Text>
                 </View>
-                <View>
+                <TouchableOpacity>
                     <Feather name='x-circle' size ={18} color= '#B0B0B0'/>
-                </View>
+                </TouchableOpacity>
             </View>
         </View>
     );
