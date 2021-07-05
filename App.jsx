@@ -1,5 +1,5 @@
 // import { StatusBar } from 'expo-status-bar';
-import React ,{ useEffect}from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {
     createStackNavigator,
@@ -14,13 +14,17 @@ import MemoCreateScreen from './src/screens/MemoCreateScreen';
 import LogInScreen from './src/screens/LogInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 
+//* firebase 関連
 import { firebaseConfig } from './env';
 
-const Stack = createStackNavigator();
+require('firebase/firestore')
 
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
 }
+
+//* 本体の記述
+const Stack = createStackNavigator();
 
 export default function App() {
     return (
