@@ -1,13 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Alert,
+    FlatList,
+} from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { shape, string, instanceOf, arrayOf } from 'prop-types';
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function MemoList() {
+export default function MemoList(props) {
+    const { Memos } = props;
     const navigation = useNavigation();
-    return (
-        <View>
+    const renderItem = ({ item }) => {
+        return (
             <TouchableOpacity
                 style={styles.memolistitem}
                 onPress={() => {
@@ -15,9 +24,11 @@ export default function MemoList() {
                 }}
             >
                 <View>
-                    <Text style={styles.memolistitemtitle}>買い物リスト</Text>
+                    <Text style={styles.memolistitemtitle} numberOfLines={1}>
+                        {item.bodyText}
+                    </Text>
                     <Text style={styles.memolistitemdate}>
-                        2020/12/24 10:00
+                        {String(item.upDatedAt)}
                     </Text>
                 </View>
                 <TouchableOpacity
@@ -29,9 +40,30 @@ export default function MemoList() {
                     <Feather name="x-circle" size={18} color="#B0B0B0" />
                 </TouchableOpacity>
             </TouchableOpacity>
+        );
+    };
+    return (
+        <View>
+            <FlatList
+                data={Memos}
+                renderItem={renderItem}
+                keyExtractor={(item) => {
+                    return item.id;
+                }}
+            />
         </View>
     );
 }
+
+MemoList.propTypes = {
+    Memos: arrayOf(
+        shape({
+            id: string,
+            bodyText: string,
+            upDatedAt: instanceOf(Date),
+        })
+    ).isRequired,
+};
 
 const styles = StyleSheet.create({
     container: {
