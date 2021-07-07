@@ -4,5 +4,5 @@ export const DatetoString = (date) => {
     if (!date) {
         return '';
     }
-    return format(date, 'yyyy年M月d日HH時MM分');
+    return format(date, 'yyyy年M月d日HH時mm分');
 };

@@ -16,11 +16,11 @@ export default function MemoDetailScreen(props) {
         if(currentUser){
             const db = firebase.firestore();
             const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
-            unsubscrive = ref.onSnapshot((document) => {
-                console.log(document.id, document.data());
-                const data = document.data();
+            unsubscrive = ref.onSnapshot((doc) => {
+                console.log(doc.id, doc.data());
+                const data = doc.data();
                 setMemo({
-                    id: document.id,
+                    id: doc.id,
                     bodyText: data.bodyText,
                     upDatedAt: data.upDatedAt.toDate(),
                 });
@@ -42,7 +42,7 @@ export default function MemoDetailScreen(props) {
                 style={{ top: 60, bottom: 'auto' }}
                 name="edit"
                 onPress={() => {
-                    navigation.navigate('MemoEdit');
+                    navigation.navigate('MemoEdit',{id: Memo.id, bodyText: Memo.bodyText});
                 }}
             />
         </View>

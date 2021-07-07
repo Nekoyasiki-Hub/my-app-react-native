@@ -11,8 +11,7 @@ import { Feather } from '@expo/vector-icons';
 import { shape, string, instanceOf, arrayOf } from 'prop-types';
 
 import { useNavigation } from '@react-navigation/native';
-import { DatetoString} from '../utils/index.js'
-
+import { DatetoString } from '../utils/index.js';
 
 export default function MemoList(props) {
     const { Memos } = props;
