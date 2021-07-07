@@ -1,29 +1,58 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import CircleButton from '../components/CircleButton';
+import { shape, string } from 'prop-types';
+import firebase from 'firebase';
+import { DatetoString} from '../utils/index.js'
 
 export default function MemoDetailScreen(props) {
-    const {navigation} = props;
+    const { navigation, route } = props;
+    const { id } = route.params;
+    const [Memo, setMemo] = useState(null);
+    let unsubscrive = () => {};
+    useEffect(() => {
+        const { currentUser } = firebase.auth();
+        if(currentUser){
+            const db = firebase.firestore();
+            const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
+            unsubscrive = ref.onSnapshot((document) => {
+                console.log(document.id, document.data());
+                const data = document.data();
+                setMemo({
+                    id: document.id,
+                    bodyText: data.bodyText,
+                    upDatedAt: data.upDatedAt.toDate(),
+                });
+            });
+        }
+        return unsubscrive
+    },[]);
+
     return (
         <View style={styles.container}>
             <View style={styles.MemoHeader}>
-                <Text style={styles.MemoTitle}>買い物リスト</Text>
-                <Text style={styles.MemoDate}>2020/12/24 10:00</Text>
+                <Text style={styles.MemoTitle} numberOfLines = {1}>{Memo && Memo.bodyText}</Text>
+                <Text style={styles.MemoDate}>{Memo && DatetoString(Memo.upDatedAt)}</Text>
             </View>
             <ScrollView style={styles.MemoBody}>
-                <Text style={styles.MemoText}>
-                    買い物リスト
-                    ポテチポテチポテチポテチポテチポテチポテチポテチポテチポテチポテチポテチ
-                </Text>
+                <Text style={styles.MemoText}>{Memo && Memo.bodyText}</Text>
             </ScrollView>
-            <CircleButton 
-                style={{ top: 60, bottom: 'auto' }} 
-                name="edit" 
-                onPress = {() => { navigation.navigate('MemoEdit')}}/>
+            <CircleButton
+                style={{ top: 60, bottom: 'auto' }}
+                name="edit"
+                onPress={() => {
+                    navigation.navigate('MemoEdit');
+                }}
+            />
         </View>
-    );ddddddd
+    );
 }
+MemoDetailScreen.propTypes = {
+    route: shape({
+        params: shape({ id: string }),
+    }).isRequired,
+};
 
 const styles = StyleSheet.create({
     container: {
