@@ -10,6 +10,7 @@ import {
 import firebase from 'firebase';
 
 import Button from '../components/Button';
+import { translateErrors } from '../utils/index';
 
 export default function LogInScreen(props) {
     const { navigation } = props;
@@ -23,10 +24,11 @@ export default function LogInScreen(props) {
                     index: 0,
                     routes: [{ name: 'MemoList' }],
                 });
+            } else {
             }
         });
-        return unsubscribe
-    },[]);
+        return unsubscribe;
+    }, []);
 
     const handlePress = () => {
         firebase
@@ -41,9 +43,10 @@ export default function LogInScreen(props) {
                 });
             })
             .catch((error) => {
-                console.log(error.code, error.massage);
-                Alert.alert(error.code);
-            });
+                const errorMsg = translateErrors(error.code);
+                Alert.alert(errorMsg.title, errorMsg.description);
+            })
+            .then(() => {});
     };
     return (
         <View style={styles.container}>
